@@ -225,31 +225,27 @@ def check_strings(dictionaries, strings, project_name, template_name, client,dat
                             result[key] = subkey
                             break
 
-    # Extraer números del string
+    # Extract numbers from the string
     numbers = extract_numbers_from_string(strings)
     
-    # Identificar el código de sociedad SAP solo si el negocio ha sido identificado
-    if result["negocio"]:
+    if result["business"]:
         for num in numbers:
-            if num in dictionaries[0]["negocio"].get(result["negocio"], []):
-                result["codigo_sociedad_sap"] = num
+            if num in dictionaries[0]["business"].get(result["business"], []):
+                result["society"] = num
                 break
-    
-    # Establecer el valor por defecto para "es_dato_con_error"
-    result["es_dato_con_error"] = "False"
-    
-    # Verificar si el string contiene un año válido
+       
+    # Verify if the string contains a valid year
     if dataset_name:
         result["year"] = check_year_in_string(strings, client, dataset_name)
     else:
         result["year"] = check_year_in_string(strings, client)
     
-    # Establecer el nombre del proyecto
-    result["proyecto"] = project_name
+    # Stablish the project name
+    result["project"] = project_name
 
     default_values = get_default_enum_value(template_name)
     result = {k: default_values.get(k, result[k]) if not result[k] else result[k] for k in result}
-    # Validación contra el template
+    # Validation process
     try:
         required_fields = get_required_fields(template_name)
         validated_result = validate_result(result, required_fields)
@@ -258,6 +254,7 @@ def check_strings(dictionaries, strings, project_name, template_name, client,dat
         return None
 
     return validated_result
+
 def tag_table(project_id, datacatalog_client, location, tag_template, tag_fields_list, datasets_tables, dictionaries, template_name,client):
     """Tag a table based on its format.
     

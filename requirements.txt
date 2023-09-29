@@ -1,3 +1,4 @@
 google-cloud-datacatalog
 google-cloud-bigquery
 google-auth
+python-dotenv
