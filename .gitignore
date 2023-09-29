@@ -1,0 +1,5 @@
+*.json
+.env
+exportar.py
+ver_dataaset.py
+myenv/
