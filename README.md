@@ -77,7 +77,8 @@ python main.py
 * To test this project, make sure to delete the tags from the tables and datasets you want to use for testing. You can add a dictionary in the environment variables or create a JSON file and load it in main.py.
 
 * Always make sure to have the necessary permissions when trying to delete or add tags.
-Contribution
+
+## Contribution
 
 Feel free to contribute to this project by opening issues or submitting pull requests.
 
